@@ -11,18 +11,27 @@ const FetchSuperHeros = () => {
 
 export default function RQSuperHeroPage() {
   // ** declare and define component state and varables
-  const { isLoading, data, error, isError } = useQuery(
+  const { isLoading, data, error, isError, isFetching } = useQuery(
     "rq-super-heros",
-    FetchSuperHeros
+    FetchSuperHeros,
+    {
+      //cacheTime:5000 // 5000 ms
+      refetchOnMount: false,
+      refetchOnWindowFocus: true,
+    }
   );
   // ** declare and define component methods
 
   // ** return component ui
   if (isLoading) return <>Loading...</>;
+
+  if (isFetching) return <>Data is fetching....</>;
+
   if (isError) {
     const axiosError = error as AxiosError;
     return <>{axiosError.message}</>;
   }
+
   return (
     <div>
       <h1>RQ Super Heroes</h1>
