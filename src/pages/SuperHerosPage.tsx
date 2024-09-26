@@ -17,7 +17,6 @@ export default function SuperHerosPage() {
     axios
       .get<HeroType[]>("http://localhost:4000/superheroes")
       .then((response) => {
-        console.log("response data::-", response);
         setHeros(response.data);
       })
       .catch((err) => {})
