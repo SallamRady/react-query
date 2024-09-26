@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage";
 import SuperHerosPage from "./pages/SuperHerosPage";
 import RQSuperHeroPage from "./pages/RQSuperHeroPage";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 function App() {
   // ** declare and define component state and variables
@@ -21,6 +22,7 @@ function App() {
           <Route path="/rq-super-heroes" element={<RQSuperHeroPage />} />
         </Routes>
       </div>
+      <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
     </QueryClientProvider>
   );
 }
