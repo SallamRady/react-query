@@ -1,25 +1,10 @@
-import axios, { AxiosError } from "axios";
-import { HeroType } from "./SuperHerosPage";
-import { useQuery } from "react-query";
-
-const FetchSuperHeros = () => {
-  return axios
-    .get<HeroType[]>("http://localhost:4000/superheroes")
-    .then((reponse) => reponse.data)
-    .catch((err) => err);
-};
+import { AxiosError } from "axios";
+import useSuperHeros from "../hooks/useSuperHeros";
 
 export default function RQSuperHeroPage() {
   // ** declare and define component state and varables
-  const { isLoading, data, error, isError, isFetching } = useQuery(
-    "rq-super-heros",
-    FetchSuperHeros,
-    {
-      //cacheTime:5000 // 5000 ms
-      refetchOnMount: false,
-      refetchOnWindowFocus: true,
-    }
-  );
+  const { isLoading, data, error, isError, isFetching, refetch } =
+    useSuperHeros();
   // ** declare and define component methods
 
   // ** return component ui
@@ -35,10 +20,22 @@ export default function RQSuperHeroPage() {
   return (
     <div>
       <h1>RQ Super Heroes</h1>
-      {data?.map((hero: HeroType) => (
+      <button
+        onClick={() => {
+          refetch();
+        }}
+      >
+        Fetch Super Heros Data
+      </button>
+      {/* {data?.map((hero: HeroType) => (
         <div key={hero.id}>
           <h2>{hero.name}</h2>
           <p>{hero.alterEgo}</p>
+        </div>
+      ))} */}
+      {data?.map((heroName: string) => (
+        <div key={heroName}>
+          <h2>{heroName}</h2>
         </div>
       ))}
     </div>

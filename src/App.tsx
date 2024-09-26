@@ -6,6 +6,7 @@ import SuperHerosPage from "./pages/SuperHerosPage";
 import RQSuperHeroPage from "./pages/RQSuperHeroPage";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
+import RQSingleSuperHero from "./pages/RQSingleSuperHero";
 
 function App() {
   // ** declare and define component state and variables
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/super-heroes" element={<SuperHerosPage />} />
+          <Route path="/super-heroe/:id" element={<RQSingleSuperHero />} />
           <Route path="/rq-super-heroes" element={<RQSuperHeroPage />} />
         </Routes>
       </div>
